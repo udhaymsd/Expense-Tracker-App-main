@@ -20,7 +20,7 @@ connectDB();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://main.d1sj7cd70hlter.amplifyapp.com",
+    origin: "https://expense-tracker-app-three-beryl.vercel.app/",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
@@ -30,6 +30,9 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// Handling preflight requests for CORS
+app.options('*', cors());
 
 // Router
 app.use("/api/v1", transactionRoutes);
